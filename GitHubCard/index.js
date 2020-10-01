@@ -1,8 +1,21 @@
+import axios from 'axios'
+
+
 /*
   STEP 1: using axios, send a GET request to the following URL
     (replacing the placeholder with your Github name):
     https://api.github.com/users/<your name>
 */
+
+axios.get('https://api.github.com/users/reesharper')
+  .then(res => {
+    console.log(res.data);
+    debugger
+  })
+  .catch(drama => {
+    console.log(drama);
+    debugger
+  });
 
 /*
   STEP 2: Inspect and study the data coming back, this is YOUR
@@ -49,6 +62,56 @@ const followersArray = [];
       </div>
     </div>
 */
+
+const cards = document.querySelector('.cards')
+
+function gitCardMaker ({obj}){
+
+  const gitCard = document.createElement('div');
+  const image = document.createElement('img');
+  const cardInfo = document.createElement('div');
+  const name = document.createElement('h3');
+  const username = document.createElement('p');
+  const location = document.createElement('p');
+  const profile = document.createElement('p');
+  const link = document.createElement('a');
+  const followers = document.createElement('p');
+  const following = document.createElement('p');
+  const bio = document.createElement('p');
+
+  gitCard.classList.add('div');
+  cardInfo.classList.add('card-info');
+  name.classList.add('name');
+  username.classList.add('username');
+
+  name.textContent = 
+  username.textContent = 'Username: ';
+  location.textContent = 'Location: ';
+  profile.textContent = 'Profile: ';
+  link.textContent = 
+  followers.textContent = 'Followers: ';
+  following.textContent = 'Following: ';
+  bio.textContent = 
+
+  image.src = 
+
+  gitCard.appendChild(image);
+  gitCard.appendChild(cardInfo);
+  cardInfo.appendChild(name);
+  cardInfo.appendChild(username);
+  cardInfo.appendChild(location);
+  cardInfo.appendChild(profile);
+  profile.appendChild(link);
+  cardInfo.appendChild(followers);
+  cardInfo.appendChild(following);
+  cardInfo.appendChild(bio);
+
+  return gitCard
+
+}
+
+const card = gitCardMaker()
+cards.append(card)
 
 /*
   List of LS Instructors Github username's:
