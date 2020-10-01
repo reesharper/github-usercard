@@ -6,17 +6,21 @@ import axios from 'axios'
     (replacing the placeholder with your Github name):
     https://api.github.com/users/<your name>
 */
+function insertCard (username) {
 
-axios.get('https://api.github.com/users/reesharper')
+
+axios.get(`https://api.github.com/users/${username}`)
   .then(res => {
     const gitCard = gitCardMaker(res.data);
     cards.append(gitCard)
-    debugger
+    // debugger
   })
-  .catch(drama => {
-    console.log(drama);
-    debugger
+  .catch(err => {
+    console.log(err);
+    // debugger
   });
+
+}
 
 /*
   STEP 2: Inspect and study the data coming back, this is YOUR
@@ -46,7 +50,11 @@ axios.get('https://api.github.com/users/reesharper')
     user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+const followersArray = ['chazkiker', 'chazkiker2', 'tetondan', 'luishrd', 'bigknell'];
+
+followersArray.forEach(followers => {
+  insertCard(followers)
+})
 
 /*
   STEP 3: Create a function that accepts a single object as its only argument.
