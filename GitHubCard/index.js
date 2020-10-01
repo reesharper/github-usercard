@@ -9,7 +9,8 @@ import axios from 'axios'
 
 axios.get('https://api.github.com/users/reesharper')
   .then(res => {
-    console.log(res.data);
+    const gitCard = gitCardMaker(res.data);
+    cards.append(gitCard)
     debugger
   })
   .catch(drama => {
@@ -22,12 +23,16 @@ axios.get('https://api.github.com/users/reesharper')
     github info! You will need to understand the structure of this
     data in order to use it to build your component function
 
+    DONE!
+
     Skip to STEP 3.
 */
 
 /*
   STEP 4: Pass the data received from Github into your function,
     and append the returned markup to the DOM as a child of .cards
+
+    DONE!
 */
 
 /*
@@ -65,7 +70,7 @@ const followersArray = [];
 
 const cards = document.querySelector('.cards')
 
-function gitCardMaker ({obj}){
+function gitCardMaker (userObject){
 
   const gitCard = document.createElement('div');
   const image = document.createElement('img');
@@ -84,16 +89,15 @@ function gitCardMaker ({obj}){
   name.classList.add('name');
   username.classList.add('username');
 
-  name.textContent = 
-  username.textContent = 'Username: ';
-  location.textContent = 'Location: ';
+  name.textContent = userObject.name;
+  username.textContent = `Username: ${userObject.login}`;
+  location.textContent = `Location: ${userObject.location}`;
   profile.textContent = 'Profile: ';
-  link.textContent = 
-  followers.textContent = 'Followers: ';
-  following.textContent = 'Following: ';
-  bio.textContent = 
-
-  image.src = 
+  link.textContent = userObject.url
+  followers.textContent = `Followers: ${userObject.followers}`;
+  following.textContent = `Following: ${userObject.following}`;
+  bio.textContent = userObject.bio;
+  image.src = userObject.avatar_url;
 
   gitCard.appendChild(image);
   gitCard.appendChild(cardInfo);
@@ -109,9 +113,6 @@ function gitCardMaker ({obj}){
   return gitCard
 
 }
-
-const card = gitCardMaker()
-cards.append(card)
 
 /*
   List of LS Instructors Github username's:
